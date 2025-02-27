@@ -18,7 +18,7 @@ jobs:
 
     - name: Clone and Build BitCrack
       run: |
-        git clone https://github.com/brichard19/BitCrack.git
+        git clone https://github.com/Gulguim/BitCrackCUDA.git
         cd BitCrack
         ls  # Verificar o conteúdo do diretório
         make BUILD_CUDA=1  # Construir com suporte a CUDA
