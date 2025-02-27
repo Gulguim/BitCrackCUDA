@@ -1,0 +1,29 @@
+name: Build BitCrack
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake git
+        sudo apt-get install -y nvidia-cuda-toolkit
+
+    - name: Build BitCrack
+      run: |
+        git clone https://github.com/Gulguim/BitCrackCUDA.git
+        cd BitCrackCUDA
+        make BUILD_CUDA=1
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: bitcrack
+        path: BitCrack/bin/
