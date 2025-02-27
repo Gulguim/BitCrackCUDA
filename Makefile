@@ -10,7 +10,7 @@ LIBS+=-L$(LIBDIR)
 
 # C++ options
 CXX=g++
-CXXFLAGS=-O2 -std=c++11
+CXXFLAGS=-O2 -std=c++11 -m64
 
 # CUDA variables
 COMPUTE_CAP=61
