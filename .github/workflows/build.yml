@@ -16,15 +16,29 @@ jobs:
         sudo apt-get install -y build-essential cmake git
         sudo apt-get install -y nvidia-cuda-toolkit
 
-    - name: Clone and Build BitCrack
+    - name: Clone repository
       run: |
         git clone https://github.com/Gulguim/BitCrackCUDA.git
-        cd BitCrackCUDA/BitCrack
-        ls  # Verificar o conteúdo do diretório
+        cd BitCrackCUDA
+        ls  # Verificar o conteúdo do diretório após a clonagem
+
+    - name: List directory contents
+      run: |
+        cd BitCrackCUDA
+        ls -R  # Listar recursivamente o conteúdo do diretório para verificar a estrutura
+
+    - name: Build BitCrack
+      run: |
+        cd BitCrackCUDA
         make BUILD_CUDA=1  # Construir com suporte a CUDA
+
+    - name: Verify build artifacts
+      run: |
+        cd BitCrackCUDA/bin
+        ls  # Verificar o conteúdo do diretório bin
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
         name: bitcrack
-        path: BitCrack/bin/
+        path: BitCrackCUDA/bin/
